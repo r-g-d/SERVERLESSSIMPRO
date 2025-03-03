@@ -1,0 +1,152 @@
+2025-02-24 21:43:30 INFO simulator.py 570 ----------------------------simulation start----------------------------
+2025-02-24 21:43:30 INFO simulator.py 474 req_num: 495
+2025-02-24 21:43:30 INFO simulator.py 475 reuseTimeWindow: 600
+2025-02-24 21:43:30 INFO simulator.py 476 USE_CONSOLIDATION: False
+2025-02-24 21:43:30 INFO simulator.py 477 CONSOLIDATION_TIME_INTERVAL: 300
+2025-02-24 21:43:30 INFO simulator.py 478 CONSOLIDATION_THRESHOLD: 0.38
+2025-02-24 21:43:30 INFO simulator.py 479 LOG_TIME_INTERVAL: 50
+2025-02-24 21:43:30 INFO simulator.py 480 APP_CONF_RANDOM: False
+2025-02-24 21:43:30 INFO simulator.py 481 USE_QUEUE: True
+2025-02-24 21:43:30 INFO simulator.py 482 PARAM1: 50
+2025-02-24 21:43:30 INFO simulator.py 483 PARAM2: 50
+2025-02-24 21:43:30 INFO simulator.py 484 ContainerPlacementStrategy: ConPlaceAlgo.FIRST_FIT
+2025-02-24 21:43:30 INFO simulator.py 485 RequestAllocationStrategy: ReqAllocAlgo.EARLIEST_KILLED
+2025-02-24 21:43:30 INFO simulator.py 486 ContainerConsolidationStrategy: ConConsAlgo.MIN_PM_NUM
+2025-02-24 21:43:30 INFO simulator.py 487 PopQueueStrategy: PopQueueAlgo.FCFS
+2025-02-24 21:43:30 INFO simulator.py 488 LOG_STRATEGY: ReqAllocAlgo.EARLIEST_KILLED
+2025-02-24 21:43:30 INFO simulator.py 489 -*-*-*-*-*-* metrics -*-*-*-*-*-*
+2025-02-24 21:43:30 INFO simulator.py 490 Total Energy Consumption:2478088.5248312713
+2025-02-24 21:43:30 INFO simulator.py 491 Total Latency:13206.985999999992
+2025-02-24 21:43:30 INFO simulator.py 492 Cold Start Count:64
+2025-02-24 21:43:30 INFO simulator.py 493 Rejection Count:0
+2025-02-24 21:43:30 INFO simulator.py 494 Average CPU Allocation Rate:0.7917652529761906
+2025-02-24 21:43:30 INFO simulator.py 495 Average memory Allocation Rate:0.4887710217300061
+2025-02-24 21:43:30 INFO simulator.py 496 Average Maximum Concurrency:14.461538461538462
+2025-02-24 21:43:30 INFO simulator.py 497 Average Cold Start State Count:0.0
+2025-02-24 21:43:30 INFO simulator.py 498 Average Running State Count:3.8
+2025-02-24 21:43:30 INFO simulator.py 499 Average Idle State Count:33.98461538461538
+2025-02-24 21:43:30 INFO simulator.py 500 Average Dead State Count:14.63076923076923
+2025-02-24 21:43:30 INFO simulator.py 501 Average Active Physical Machine Count:6.7846153846153845
+2025-02-24 21:43:30 INFO simulator.py 592 -----------------------------simulation end-----------------------------
+2025-02-24 21:43:49 INFO simulator.py 570 ----------------------------simulation start----------------------------
+2025-02-24 21:43:49 INFO simulator.py 474 req_num: 495
+2025-02-24 21:43:49 INFO simulator.py 475 reuseTimeWindow: 600
+2025-02-24 21:43:49 INFO simulator.py 476 USE_CONSOLIDATION: False
+2025-02-24 21:43:49 INFO simulator.py 477 CONSOLIDATION_TIME_INTERVAL: 300
+2025-02-24 21:43:49 INFO simulator.py 478 CONSOLIDATION_THRESHOLD: 0.38
+2025-02-24 21:43:49 INFO simulator.py 479 LOG_TIME_INTERVAL: 50
+2025-02-24 21:43:49 INFO simulator.py 480 APP_CONF_RANDOM: False
+2025-02-24 21:43:49 INFO simulator.py 481 USE_QUEUE: True
+2025-02-24 21:43:49 INFO simulator.py 482 PARAM1: 50
+2025-02-24 21:43:49 INFO simulator.py 483 PARAM2: 50
+2025-02-24 21:43:49 INFO simulator.py 484 ContainerPlacementStrategy: ConPlaceAlgo.MIN_VEC_DIST
+2025-02-24 21:43:49 INFO simulator.py 485 RequestAllocationStrategy: ReqAllocAlgo.EARLIEST_KILLED
+2025-02-24 21:43:49 INFO simulator.py 486 ContainerConsolidationStrategy: ConConsAlgo.MIN_PM_NUM
+2025-02-24 21:43:49 INFO simulator.py 487 PopQueueStrategy: PopQueueAlgo.FCFS
+2025-02-24 21:43:49 INFO simulator.py 488 LOG_STRATEGY: ReqAllocAlgo.EARLIEST_KILLED
+2025-02-24 21:43:49 INFO simulator.py 489 -*-*-*-*-*-* metrics -*-*-*-*-*-*
+2025-02-24 21:43:49 INFO simulator.py 490 Total Energy Consumption:2698725.100483438
+2025-02-24 21:43:49 INFO simulator.py 491 Total Latency:13206.985999999992
+2025-02-24 21:43:49 INFO simulator.py 492 Cold Start Count:64
+2025-02-24 21:43:49 INFO simulator.py 493 Rejection Count:0
+2025-02-24 21:43:49 INFO simulator.py 494 Average CPU Allocation Rate:0.7140646033653846
+2025-02-24 21:43:49 INFO simulator.py 495 Average memory Allocation Rate:0.4404874108096764
+2025-02-24 21:43:49 INFO simulator.py 496 Average Maximum Concurrency:14.461538461538462
+2025-02-24 21:43:49 INFO simulator.py 497 Average Cold Start State Count:0.0
+2025-02-24 21:43:49 INFO simulator.py 498 Average Running State Count:3.8
+2025-02-24 21:43:49 INFO simulator.py 499 Average Idle State Count:33.98461538461538
+2025-02-24 21:43:49 INFO simulator.py 500 Average Dead State Count:14.63076923076923
+2025-02-24 21:43:49 INFO simulator.py 501 Average Active Physical Machine Count:7.523076923076923
+2025-02-24 21:43:49 INFO simulator.py 592 -----------------------------simulation end-----------------------------2025-02-24 21:45:31 INFO simulator.py 570 ----------------------------simulation start----------------------------
+2025-02-24 21:45:31 INFO simulator.py 474 req_num: 495
+2025-02-24 21:45:31 INFO simulator.py 475 reuseTimeWindow: 600
+2025-02-24 21:45:31 INFO simulator.py 476 USE_CONSOLIDATION: False
+2025-02-24 21:45:31 INFO simulator.py 477 CONSOLIDATION_TIME_INTERVAL: 300
+2025-02-24 21:45:31 INFO simulator.py 478 CONSOLIDATION_THRESHOLD: 0.38
+2025-02-24 21:45:31 INFO simulator.py 479 LOG_TIME_INTERVAL: 50
+2025-02-24 21:45:31 INFO simulator.py 480 APP_CONF_RANDOM: False
+2025-02-24 21:45:31 INFO simulator.py 481 USE_QUEUE: True
+2025-02-24 21:45:31 INFO simulator.py 482 PARAM1: 50
+2025-02-24 21:45:31 INFO simulator.py 483 PARAM2: 50
+2025-02-24 21:45:31 INFO simulator.py 484 ContainerPlacementStrategy: ConPlaceAlgo.BEST_FIT
+2025-02-24 21:45:31 INFO simulator.py 485 RequestAllocationStrategy: ReqAllocAlgo.EARLIEST_KILLED
+2025-02-24 21:45:31 INFO simulator.py 486 ContainerConsolidationStrategy: ConConsAlgo.MIN_PM_NUM
+2025-02-24 21:45:31 INFO simulator.py 487 PopQueueStrategy: PopQueueAlgo.FCFS
+2025-02-24 21:45:31 INFO simulator.py 488 LOG_STRATEGY: ReqAllocAlgo.EARLIEST_KILLED
+2025-02-24 21:45:31 INFO simulator.py 489 -*-*-*-*-*-* metrics -*-*-*-*-*-*
+2025-02-24 21:45:31 INFO simulator.py 490 Total Energy Consumption:2548771.3077861094
+2025-02-24 21:45:31 INFO simulator.py 491 Total Latency:13206.985999999992
+2025-02-24 21:45:31 INFO simulator.py 492 Cold Start Count:64
+2025-02-24 21:45:31 INFO simulator.py 493 Rejection Count:0
+2025-02-24 21:45:31 INFO simulator.py 494 Average CPU Allocation Rate:0.7660234231913919
+2025-02-24 21:45:31 INFO simulator.py 495 Average memory Allocation Rate:0.47253745874351344
+2025-02-24 21:45:31 INFO simulator.py 496 Average Maximum Concurrency:14.461538461538462
+2025-02-24 21:45:31 INFO simulator.py 497 Average Cold Start State Count:0.0
+2025-02-24 21:45:31 INFO simulator.py 498 Average Running State Count:3.8
+2025-02-24 21:45:31 INFO simulator.py 499 Average Idle State Count:33.98461538461538
+2025-02-24 21:45:31 INFO simulator.py 500 Average Dead State Count:14.63076923076923
+2025-02-24 21:45:31 INFO simulator.py 501 Average Active Physical Machine Count:7.030769230769231
+2025-02-24 21:45:31 INFO simulator.py 592 -----------------------------simulation end-----------------------------
+2025-02-26 21:14:25 INFO simulator.py 572 ----------------------------simulation start----------------------------
+2025-02-26 21:14:25 ERROR simulator.py 108 No container placement strategy is selected!
+2025-02-26 21:15:17 INFO simulator.py 572 ----------------------------simulation start----------------------------
+2025-02-26 21:15:17 INFO simulator.py 476 req_num: 495
+2025-02-26 21:15:17 INFO simulator.py 477 reuseTimeWindow: 600
+2025-02-26 21:15:17 INFO simulator.py 478 USE_CONSOLIDATION: False
+2025-02-26 21:15:17 INFO simulator.py 479 CONSOLIDATION_TIME_INTERVAL: 300
+2025-02-26 21:15:17 INFO simulator.py 480 CONSOLIDATION_THRESHOLD: 0.38
+2025-02-26 21:15:17 INFO simulator.py 481 LOG_TIME_INTERVAL: 50
+2025-02-26 21:15:17 INFO simulator.py 482 APP_CONF_RANDOM: False
+2025-02-26 21:15:17 INFO simulator.py 483 USE_QUEUE: True
+2025-02-26 21:15:17 INFO simulator.py 484 PARAM1: 50
+2025-02-26 21:15:17 INFO simulator.py 485 PARAM2: 50
+2025-02-26 21:15:17 INFO simulator.py 486 ContainerPlacementStrategy: ConPlaceAlgo.WORST_FIT
+2025-02-26 21:15:17 INFO simulator.py 487 RequestAllocationStrategy: ReqAllocAlgo.EARLIEST_KILLED
+2025-02-26 21:15:17 INFO simulator.py 488 ContainerConsolidationStrategy: ConConsAlgo.MIN_PM_NUM
+2025-02-26 21:15:17 INFO simulator.py 489 PopQueueStrategy: PopQueueAlgo.FCFS
+2025-02-26 21:15:17 INFO simulator.py 490 LOG_STRATEGY: ReqAllocAlgo.EARLIEST_KILLED
+2025-02-26 21:15:17 INFO simulator.py 491 -*-*-*-*-*-* metrics -*-*-*-*-*-*
+2025-02-26 21:15:17 INFO simulator.py 492 Total Energy Consumption:7581267.03116954
+2025-02-26 21:15:17 INFO simulator.py 493 Total Latency:13206.985999999992
+2025-02-26 21:15:17 INFO simulator.py 494 Cold Start Count:64
+2025-02-26 21:15:17 INFO simulator.py 495 Rejection Count:0
+2025-02-26 21:15:17 INFO simulator.py 496 Average CPU Allocation Rate:0.22973466549444022
+2025-02-26 21:15:17 INFO simulator.py 497 Average memory Allocation Rate:0.14125572306541914
+2025-02-26 21:15:17 INFO simulator.py 498 Average Maximum Concurrency:14.461538461538462
+2025-02-26 21:15:17 INFO simulator.py 499 Average Cold Start State Count:0.0
+2025-02-26 21:15:17 INFO simulator.py 500 Average Running State Count:3.8
+2025-02-26 21:15:17 INFO simulator.py 501 Average Idle State Count:33.98461538461538
+2025-02-26 21:15:17 INFO simulator.py 502 Average Dead State Count:14.63076923076923
+2025-02-26 21:15:17 INFO simulator.py 503 Average Active Physical Machine Count:23.661538461538463
+2025-02-26 21:15:17 INFO simulator.py 594 -----------------------------simulation end-----------------------------
+2025-02-28 17:42:45 INFO simulator.py 572 ----------------------------simulation start----------------------------
+2025-02-28 17:43:06 INFO simulator.py 572 ----------------------------simulation start----------------------------
+2025-02-28 17:43:06 INFO simulator.py 476 req_num: 1500
+2025-02-28 17:43:06 INFO simulator.py 477 reuseTimeWindow: 600
+2025-02-28 17:43:06 INFO simulator.py 478 USE_CONSOLIDATION: False
+2025-02-28 17:43:06 INFO simulator.py 479 CONSOLIDATION_TIME_INTERVAL: 300
+2025-02-28 17:43:06 INFO simulator.py 480 CONSOLIDATION_THRESHOLD: 0.38
+2025-02-28 17:43:06 INFO simulator.py 481 LOG_TIME_INTERVAL: 50
+2025-02-28 17:43:06 INFO simulator.py 482 APP_CONF_RANDOM: False
+2025-02-28 17:43:06 INFO simulator.py 483 USE_QUEUE: True
+2025-02-28 17:43:06 INFO simulator.py 484 PARAM1: 50
+2025-02-28 17:43:06 INFO simulator.py 485 PARAM2: 50
+2025-02-28 17:43:06 INFO simulator.py 486 ContainerPlacementStrategy: ConPlaceAlgo.WORST_FIT
+2025-02-28 17:43:06 INFO simulator.py 487 RequestAllocationStrategy: ReqAllocAlgo.EARLIEST_KILLED
+2025-02-28 17:43:06 INFO simulator.py 488 ContainerConsolidationStrategy: ConConsAlgo.MIN_PM_NUM
+2025-02-28 17:43:06 INFO simulator.py 489 PopQueueStrategy: PopQueueAlgo.FCFS
+2025-02-28 17:43:06 INFO simulator.py 490 LOG_STRATEGY: ReqAllocAlgo.EARLIEST_KILLED
+2025-02-28 17:43:06 INFO simulator.py 491 -*-*-*-*-*-* metrics -*-*-*-*-*-*
+2025-02-28 17:43:06 INFO simulator.py 492 Total Energy Consumption:17281170.48001213
+2025-02-28 17:43:06 INFO simulator.py 493 Total Latency:26523.752000000175
+2025-02-28 17:43:06 INFO simulator.py 494 Cold Start Count:109
+2025-02-28 17:43:06 INFO simulator.py 495 Rejection Count:0
+2025-02-28 17:43:06 INFO simulator.py 496 Average CPU Allocation Rate:0.2278597126475723
+2025-02-28 17:43:06 INFO simulator.py 497 Average memory Allocation Rate:0.1430585676273643
+2025-02-28 17:43:06 INFO simulator.py 498 Average Maximum Concurrency:14.37012987012987
+2025-02-28 17:43:06 INFO simulator.py 499 Average Cold Start State Count:0.0
+2025-02-28 17:43:06 INFO simulator.py 500 Average Running State Count:3.2142857142857144
+2025-02-28 17:43:06 INFO simulator.py 501 Average Idle State Count:33.383116883116884
+2025-02-28 17:43:06 INFO simulator.py 502 Average Dead State Count:38.62337662337662
+2025-02-28 17:43:06 INFO simulator.py 503 Average Active Physical Machine Count:23.071428571428573
+2025-02-28 17:43:06 INFO simulator.py 594 -----------------------------simulation end-----------------------------
