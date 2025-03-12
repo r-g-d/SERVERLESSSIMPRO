@@ -89,6 +89,35 @@ time_series = []
 
 
 # ####################### Task Layer #######################
+def createContainerAlgo(req,createTime):
+    req.appId
+    PmInd = -1
+    for i in range(nPMs):
+        if containerMappedPM[i][req.appId]>0:
+            PmInd = i
+            break
+    if PmInd != -1:
+        containerMappedPM[PmInd][req.appId]-=1
+        container = Container(appList[req.appId], createTime)
+        containerList.append(container)
+        activeContainers[container.appId].append(container.id)
+        req.containerId = container.id
+        pmList[PmInd].remainMem -= container.mem
+        pmList[PmInd].remainCpu -= container.cpu
+        pmList[PmInd].containerIdList.append(container.id)
+    # if no placeholder is found a spare is maintained
+    elif (appList[req.appId].mem<=pmList[nPMs].remainMem and appList[req.appId].cpu<=pmList[nPMs].remainCpu):
+        container = Container(appList[req.appId], createTime)
+        containerList.append(container)
+        activeContainers[container.appId].append(container.id)
+        req.containerId = container.id
+        pmList[nPMs].remainMem -= container.mem
+        pmList[nPMs].remainCpu -= container.cpu
+        pmList[nPMs].containerIdList.append(container.id)
+    else:
+        req.isRejected = True
+        global reject_num
+        reject_num += 1
 
 
 def createContainer(req, createTime):
@@ -515,6 +544,12 @@ def logInfo(endTime):
 
 
 # #################################### real-time simulation ####################################
+def startPMs():
+    #creating nPMs(6+1) at the time = 0
+    for i in range(nPMs+1):
+        pm = PM(0)
+        pmList.append(pm)
+
 
 def initEnvironment():
     global reqList, appList, activeContainers, appWaitingQueue, jobList, seq, cpu_pm, P_max, P_mid, P_idle, \
@@ -550,6 +585,7 @@ def initEnvironment():
         num1 += 1
         if num1 == req_num:
             break
+    startPMs()
     time_series_data = {
         'time_series': time_series,
         'energy_list': energy_list,
