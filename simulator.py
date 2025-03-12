@@ -15,7 +15,7 @@ from schedulingInterface.RequestAllocation import EarliestKilled, LatestKilled, 
 from schedulingInterface.ContainerConsolidation import MinPmNum
 from schedulingInterface.PopQueue import FCFS, SJF, HRRN
 from enumClass.enumClass import ReqAllocAlgo, ConPlaceAlgo, ConConsAlgo, PopQueueAlgo, Task, ContainerState
-
+from optpack import containerMappedPM,nPMs
 # ####################### Simulation Parameters(Adjustable) #######################
 req_num = 1500
 P_idle = 92.61
@@ -23,7 +23,7 @@ P_max = 259.67
 P_mid = 94.8
 cs_factor = 0.52
 
-reuseTimeWindow = 600
+reuseTimeWindow = 300
 
 USE_CONSOLIDATION = False
 CONSOLIDATION_TIME_INTERVAL = 300
@@ -41,13 +41,13 @@ MAX_QUEUE_LENGTH = [PARAM2] * APP_NUM
 
 # ####################### Strategies(Adjustable) #######################
 
-ContainerPlacementStrategy = ConPlaceAlgo.WORST_FIT
+ContainerPlacementStrategy = ConPlaceAlgo.BEST_FIT
 RequestAllocationStrategy = ReqAllocAlgo.EARLIEST_KILLED
 ContainerConsolidationStrategy = ConConsAlgo.MIN_PM_NUM
 PopQueueStrategy = PopQueueAlgo.FCFS
 
 # log file name in /logs/plotFigs
-LOG_STRATEGY = RequestAllocationStrategy
+LOG_STRATEGY = ContainerPlacementStrategy
 # ####################### Global Variables #######################
 max_energy = 0
 max_latency = 0
@@ -597,3 +597,4 @@ def sim():
 if __name__ == "__main__":
     initEnvironment()
     sim()
+    #print(containerMappedPM)

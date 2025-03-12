@@ -85,7 +85,7 @@ def plotMigration(time_series, migration_list):
 
 if __name__ == "__main__":
     resolveName = ConPlaceAlgo.BEST_FIT
-    with open(str(resolveName)+'.json', mode='r') as file:
+    with open('logs/plotFigs/'+str(resolveName)+'.json', mode='r') as file:
         time_series_data = json.load(file)
     time_series = time_series_data['time_series']
     energy_list = time_series_data['energy_list']

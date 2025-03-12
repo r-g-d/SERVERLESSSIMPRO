@@ -22,7 +22,7 @@ def WorstFit(pmList, container):
         if pm.remainMem >= container.mem and pm.remainCpu >= container.cpu and pm.alive:
             x_cpu = pm.remainCpu/(pm.remainCpu + pm.remainMem)
             x_mem = pm.remainMem/(pm.remainCpu + pm.remainMem)
-            dist = (x_cpu-y_cpu) + (x_mem-y_mem)
+            dist = abs(x_cpu-y_cpu) + abs(x_mem-y_mem)
             if dist > Dist:
                 Dist = dist
                 bestPm = pm
@@ -44,7 +44,7 @@ def BestFit(pmList, container):
         if pm.remainMem >= container.mem and pm.remainCpu >= container.cpu and pm.alive:
             x_cpu = pm.remainCpu/(pm.remainCpu + pm.remainMem)
             x_mem = pm.remainMem/(pm.remainCpu + pm.remainMem)
-            dist = (x_cpu-y_cpu) + (x_mem-y_mem)
+            dist = abs(x_cpu-y_cpu) + abs(x_mem-y_mem)
             if dist < Dist:
                 Dist = dist
                 bestPm = pm
