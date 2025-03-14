@@ -90,12 +90,12 @@ time_series = []
 
 # ####################### Task Layer #######################
 def createContainerAlgo(req,createTime):
-    req.appId
     PmInd = -1
     for i in range(nPMs):
         if containerMappedPM[i][req.appId]>0:
             PmInd = i
             break
+    # if there is a place holder for that container place in that place
     if PmInd != -1:
         containerMappedPM[PmInd][req.appId]-=1
         container = Container(appList[req.appId], createTime)
@@ -114,6 +114,7 @@ def createContainerAlgo(req,createTime):
         pmList[nPMs].remainMem -= container.mem
         pmList[nPMs].remainCpu -= container.cpu
         pmList[nPMs].containerIdList.append(container.id)
+    #if the spare container also has no space reject the request
     else:
         req.isRejected = True
         global reject_num
@@ -143,6 +144,22 @@ def createContainer(req, createTime):
         pm0.containerIdList.append(container.id)
         pmList.append(pm0)
 
+#algorithm for container kill where the pm is not turned off and place holder is updated
+def containerKillAlgo(req,time):
+    container = containerList[req.containerId]
+    container.kill()
+    activeContainers[container.appId].remove(container.id)
+    for pm in pmList:
+        if container.id in pm.containerIdList:
+            pm.containerIdList.remove(container.id)
+            pm.remainMem += container.mem
+            pm.remainCpu += container.cpu
+            # if the released container is not in the spare container place holder is updated
+            if pm.id != nPMs: 
+                containerMappedPM[pm.id][container.appId]+=1
+            break
+                
+    
 
 def containerKill(req, time):
     container = containerList[req.containerId]
