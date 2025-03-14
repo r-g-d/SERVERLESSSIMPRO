@@ -17,7 +17,7 @@ from schedulingInterface.PopQueue import FCFS, SJF, HRRN
 from enumClass.enumClass import ReqAllocAlgo, ConPlaceAlgo, ConConsAlgo, PopQueueAlgo, Task, ContainerState
 from optpack import containerMappedPM,nPMs
 # ####################### Simulation Parameters(Adjustable) #######################
-req_num = 1500
+req_num = 500
 P_idle = 92.61
 P_max = 259.67
 P_mid = 94.8
@@ -175,7 +175,7 @@ def containerKill(req, time):
                 pm.start_end_time[1] = time
             break
 
-
+#no modification is required in hanldeReq
 def handleReq(req, time):
     if not USE_QUEUE:
         requestAlloc(req, time)
@@ -198,7 +198,7 @@ def handleReq(req, time):
                 global reject_num
                 reject_num += 1
 
-
+# no updation is required as no placeholder is being created nor destroyed
 def requestAlloc(req, time):
     spareCon2ThisReq = []
     for containerId in activeContainers[req.appId]:
@@ -233,13 +233,13 @@ def requestAlloc(req, time):
         heapq.heappush(jobList, (req.run_end_timestamp, seq, Task.CON_SPARE, req))
         addPeriodicJob(req, req.run_end_timestamp)
     else:
-        createContainer(req, time)
+        createContainerAlgo(req, time)
         heapq.heappush(jobList, (containerList[-1].coldStartEndTime, seq, Task.CON_RUN, req))
         addPeriodicJob(req, containerList[-1].coldStartEndTime)
         global cold_start_times
         cold_start_times += 1
 
-
+# no updation is required as no placeholder is being created nor destroyed
 def containerRun(req, time):
     c = containerList[req.containerId]
     c.run(time)
@@ -248,7 +248,7 @@ def containerRun(req, time):
     heapq.heappush(jobList, (time + req.duration, seq, Task.CON_SPARE, req))
     addPeriodicJob(req, time + req.duration)
 
-
+# no updation is required as no placeholder is being created nor destroyed
 def containerSpare(req, time):
     req.end_timestamp = time
     if USE_QUEUE and len(appWaitingQueue[req.appId]) > 0:
@@ -271,7 +271,7 @@ def containerSpare(req, time):
         heapq.heappush(jobList, (time + reuseTimeWindow, seq, Task.CON_KILL, req))
         addPeriodicJob(req, time + reuseTimeWindow)
 
-
+# no updation is required as no placeholder is being created nor destroyed
 def addPeriodicJob(req, time):
     global consolidation_num, seq, log_num
     # consolidation periodic task
@@ -638,7 +638,7 @@ def sim():
         elif task == Task.SYS_LOG:
             systemLog(time)
         elif task == Task.CON_KILL:
-            containerKill(req, time)
+            containerKillAlgo(req, time)
 
         if len(jobList) == 0:
             endTime = time
