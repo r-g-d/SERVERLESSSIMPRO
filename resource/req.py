@@ -25,7 +25,7 @@ def cmp_by_start_timestamp(a, b):
 def getReqList():
     reqList = []
     line_num = 0
-    with open('Trace\first500.txt', 'r') as f:
+    with open('Trace\example.txt', 'r') as f:
         for line in f:
             if line_num == 0:
                 line_num = 1
