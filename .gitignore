@@ -1,2 +1,3 @@
 Trace/*.txt
+Trace/*.csv
 logs/logMetrics

@@ -54,6 +54,7 @@ max_latency = 0
 max_clodStartTimes = req_num
 cold_start_times = 0
 total_latency = 0
+pmstart_delays = 0
 total_energy = 0
 reject_num = 0
 consolidation_num = 1
@@ -108,6 +109,8 @@ def createContainer(req, createTime):
         logger.error("No container placement strategy is selected!")
         assert 1 == 0
     if noAvailablePM:
+        global pmstart_delays
+        pmstart_delays+=1
         pm0 = PM(createTime)
         pm0.remainMem -= container.mem
         pm0.remainCpu -= container.cpu
