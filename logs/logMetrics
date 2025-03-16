@@ -571,3 +571,5 @@
 2025-03-14 19:31:15 INFO simulator.py 548 Average Dead State Count:0.0
 2025-03-14 19:31:15 INFO simulator.py 549 Average Active Physical Machine Count:7.0
 2025-03-14 19:31:15 INFO simulator.py 647 -----------------------------simulation end-----------------------------
+2025-03-16 12:17:47 INFO simulator.py 625 ----------------------------simulation start----------------------------
+2025-03-16 12:18:10 INFO simulator.py 625 ----------------------------simulation start----------------------------
