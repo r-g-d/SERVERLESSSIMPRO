@@ -652,9 +652,11 @@ def sim():
     updateLatency(endTime)
     logInfo(endTime)
     logger.info("-----------------------------simulation end-----------------------------")
-
+    return endTime
 
 if __name__ == "__main__":
     initEnvironment()
-    sim()
+    endTime = sim()
+    print(f"Total Energy Consumption:{getEnergy(endTime)}")
+    print(f"Number of PM start delays:{1}")
     #print(containerMappedPM)
