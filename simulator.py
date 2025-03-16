@@ -41,7 +41,7 @@ MAX_QUEUE_LENGTH = [PARAM2] * APP_NUM
 
 # ####################### Strategies(Adjustable) #######################
 
-ContainerPlacementStrategy = ConPlaceAlgo.BEST_FIT
+ContainerPlacementStrategy = ConPlaceAlgo.FIRST_FIT
 RequestAllocationStrategy = ReqAllocAlgo.EARLIEST_KILLED
 ContainerConsolidationStrategy = ConConsAlgo.MIN_PM_NUM
 PopQueueStrategy = PopQueueAlgo.FCFS
@@ -595,9 +595,12 @@ def sim():
     updateLatency(endTime)
     logInfo(endTime)
     logger.info("-----------------------------simulation end-----------------------------")
+    return endTime
 
 
 if __name__ == "__main__":
     initEnvironment()
-    sim()
+    endTime = sim()
+    print(f"Total Energy Consumption:{getEnergy(endTime)}")
+    print(f"Number of PM start delays:{pmstart_delays}")
     #print(containerMappedPM)
