@@ -22,7 +22,7 @@ packer.add_bin(CPU,MEM,count=float("inf"))
 packer.pack()
 
 nPMs = len(packer)
-print(nPMs)
+# print(nPMs)
 
 all_containers=packer.rect_list()
 

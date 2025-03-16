@@ -52,6 +52,9 @@ class Container:
 
     def spare(self, time, reuseTimeWindow):
         self.killedTime = time + reuseTimeWindow
+        # print(self.runTime)   
+        if len(self.runTime)==0:
+            breakpoint()
         self.runTime[-1].end = time
         self.state = ContainerState.SPARE
 

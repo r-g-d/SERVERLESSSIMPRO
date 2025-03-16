@@ -17,7 +17,7 @@ from schedulingInterface.PopQueue import FCFS, SJF, HRRN
 from enumClass.enumClass import ReqAllocAlgo, ConPlaceAlgo, ConConsAlgo, PopQueueAlgo, Task, ContainerState
 from optpack import containerMappedPM,nPMs
 # ####################### Simulation Parameters(Adjustable) #######################
-req_num = 1495
+req_num = 1500
 P_idle = 92.61
 P_max = 259.67
 P_mid = 94.8
@@ -95,6 +95,9 @@ def createContainerAlgo(req,createTime):
         if containerMappedPM[i][req.appId]>0:
             PmInd = i
             break
+    # if req.appId == 47:
+    #     breakpoint()
+    # breakpoint()
     # if there is a place holder for that container place in that place
     if PmInd != -1:
         containerMappedPM[PmInd][req.appId]-=1
@@ -105,6 +108,7 @@ def createContainerAlgo(req,createTime):
         pmList[PmInd].remainMem -= container.mem
         pmList[PmInd].remainCpu -= container.cpu
         pmList[PmInd].containerIdList.append(container.id)
+        return True
     # if no placeholder is found a spare is maintained
     elif (appList[req.appId].mem<=pmList[nPMs].remainMem and appList[req.appId].cpu<=pmList[nPMs].remainCpu):
         container = Container(appList[req.appId], createTime)
@@ -114,11 +118,13 @@ def createContainerAlgo(req,createTime):
         pmList[nPMs].remainMem -= container.mem
         pmList[nPMs].remainCpu -= container.cpu
         pmList[nPMs].containerIdList.append(container.id)
+        return True
     #if the spare container also has no space reject the request
     else:
         req.isRejected = True
         global reject_num
         reject_num += 1
+        return False
 
 
 def createContainer(req, createTime):
@@ -146,6 +152,7 @@ def createContainer(req, createTime):
 
 #algorithm for container kill where the pm is not turned off and place holder is updated
 def containerKillAlgo(req,time):
+    # breakpoint()
     container = containerList[req.containerId]
     container.kill()
     activeContainers[container.appId].remove(container.id)
@@ -233,11 +240,11 @@ def requestAlloc(req, time):
         heapq.heappush(jobList, (req.run_end_timestamp, seq, Task.CON_SPARE, req))
         addPeriodicJob(req, req.run_end_timestamp)
     else:
-        createContainerAlgo(req, time)
-        heapq.heappush(jobList, (containerList[-1].coldStartEndTime, seq, Task.CON_RUN, req))
-        addPeriodicJob(req, containerList[-1].coldStartEndTime)
-        global cold_start_times
-        cold_start_times += 1
+        if createContainerAlgo(req, time) == True:
+            heapq.heappush(jobList, (containerList[-1].coldStartEndTime, seq, Task.CON_RUN, req))
+            addPeriodicJob(req, containerList[-1].coldStartEndTime)
+            global cold_start_times
+            cold_start_times += 1
 
 # no updation is required as no placeholder is being created nor destroyed
 def containerRun(req, time):
