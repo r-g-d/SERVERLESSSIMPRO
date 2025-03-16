@@ -55,7 +55,7 @@ def cmp_by_start_timestamp(a, b):
 
 def getReqList():
     reqList = []
-    df=pd.read_csv("Trace\\Modified_trace.csv",nrows=1500)
+    df=pd.read_csv("Trace\\Modified_trace.csv",nrows=1600)
     for row in df.itertuples(index=False):
         reqList.append(Req(row.app,row.func,float(row.end_timestamp),float(row.duration)))
     reqList.sort(key=cmp_to_key(cmp_by_start_timestamp))
