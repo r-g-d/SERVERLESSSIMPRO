@@ -41,7 +41,7 @@ MAX_QUEUE_LENGTH = [PARAM2] * APP_NUM
 
 # ####################### Strategies(Adjustable) #######################
 
-ContainerPlacementStrategy = ConPlaceAlgo.FIRST_FIT
+ContainerPlacementStrategy = ConPlaceAlgo.BEST_FIT
 RequestAllocationStrategy = ReqAllocAlgo.EARLIEST_KILLED
 ContainerConsolidationStrategy = ConConsAlgo.MIN_PM_NUM
 PopQueueStrategy = PopQueueAlgo.FCFS
@@ -54,12 +54,12 @@ max_latency = 0
 max_clodStartTimes = req_num
 cold_start_times = 0
 total_latency = 0
-pmstart_delays = 0
 total_energy = 0
 reject_num = 0
 consolidation_num = 1
 log_num = 1
 seq = 0
+pmStartupDelays=0
 cpu_pm = CPU
 reqList = []
 appList = []
@@ -90,6 +90,33 @@ time_series = []
 
 
 # ####################### Task Layer #######################
+def createContainerAlgo(req,createTime):
+    PmInd = -1
+    for i in range(nPMs):
+        if containerMappedPM[i][req.appId]>0:
+            PmInd = i
+            break
+    if PmInd != -1:
+        containerMappedPM[PmInd][req.appId]-=1
+        container = Container(appList[req.appId], createTime)
+        containerList.append(container)
+        activeContainers[container.appId].append(container.id)
+        req.containerId = container.id
+        pmList[PmInd].remainMem -= container.mem
+        pmList[PmInd].remainCpu -= container.cpu
+        pmList[PmInd].containerIdList.append(container.id)
+        return True
+    # if no placeholder is found a spare is maintained
+    else:
+        createContainer(req,createTime) 
+        return True
+    #no request is rejected
+    #if the spare container also has no space reject the request
+    # else:
+    #     req.isRejected = True
+    #     global reject_num
+    #     reject_num += 1
+    #     return False
 
 
 def createContainer(req, createTime):
@@ -109,14 +136,34 @@ def createContainer(req, createTime):
         logger.error("No container placement strategy is selected!")
         assert 1 == 0
     if noAvailablePM:
-        global pmstart_delays
-        pmstart_delays+=1
+        global pmStartupDelays
+        pmStartupDelays += 1
         pm0 = PM(createTime)
         pm0.remainMem -= container.mem
         pm0.remainCpu -= container.cpu
         pm0.containerIdList.append(container.id)
         pmList.append(pm0)
 
+#algorithm for container kill where the pm is not turned off and place holder is updated
+def containerKillAlgo(req,time):
+    # breakpoint()
+    container = containerList[req.containerId]
+    container.kill()
+    activeContainers[container.appId].remove(container.id)
+    for pm in pmList:
+        if container.id in pm.containerIdList:
+            pm.containerIdList.remove(container.id)
+            pm.remainMem += container.mem
+            pm.remainCpu += container.cpu
+            # if the released container is not in the spare container place holder is updated
+            if 0<=pm.id<nPMs: 
+                containerMappedPM[pm.id][container.appId]+=1
+            if pm.id>=nPMs and len(pm.containerIdList) == 0:
+                pm.alive = False
+                pm.start_end_time[1] = time
+            break
+                
+    
 
 def containerKill(req, time):
     container = containerList[req.containerId]
@@ -132,7 +179,7 @@ def containerKill(req, time):
                 pm.start_end_time[1] = time
             break
 
-
+#no modification is required in hanldeReq
 def handleReq(req, time):
     if not USE_QUEUE:
         requestAlloc(req, time)
@@ -155,7 +202,7 @@ def handleReq(req, time):
                 global reject_num
                 reject_num += 1
 
-
+# no updation is required as no placeholder is being created nor destroyed
 def requestAlloc(req, time):
     spareCon2ThisReq = []
     for containerId in activeContainers[req.appId]:
@@ -190,13 +237,13 @@ def requestAlloc(req, time):
         heapq.heappush(jobList, (req.run_end_timestamp, seq, Task.CON_SPARE, req))
         addPeriodicJob(req, req.run_end_timestamp)
     else:
-        createContainer(req, time)
-        heapq.heappush(jobList, (containerList[-1].coldStartEndTime, seq, Task.CON_RUN, req))
-        addPeriodicJob(req, containerList[-1].coldStartEndTime)
-        global cold_start_times
-        cold_start_times += 1
+        if createContainerAlgo(req, time) == True:
+            heapq.heappush(jobList, (containerList[-1].coldStartEndTime, seq, Task.CON_RUN, req))
+            addPeriodicJob(req, containerList[-1].coldStartEndTime)
+            global cold_start_times
+            cold_start_times += 1
 
-
+# no updation is required as no placeholder is being created nor destroyed
 def containerRun(req, time):
     c = containerList[req.containerId]
     c.run(time)
@@ -205,7 +252,7 @@ def containerRun(req, time):
     heapq.heappush(jobList, (time + req.duration, seq, Task.CON_SPARE, req))
     addPeriodicJob(req, time + req.duration)
 
-
+# no updation is required as no placeholder is being created nor destroyed
 def containerSpare(req, time):
     req.end_timestamp = time
     if USE_QUEUE and len(appWaitingQueue[req.appId]) > 0:
@@ -228,7 +275,7 @@ def containerSpare(req, time):
         heapq.heappush(jobList, (time + reuseTimeWindow, seq, Task.CON_KILL, req))
         addPeriodicJob(req, time + reuseTimeWindow)
 
-
+# no updation is required as no placeholder is being created nor destroyed
 def addPeriodicJob(req, time):
     global consolidation_num, seq, log_num
     # consolidation periodic task
@@ -518,6 +565,14 @@ def logInfo(endTime):
 
 
 # #################################### real-time simulation ####################################
+def startPMs():
+    #creating nPMs(6+1) at the time = 0
+    global pmStartupDelays
+    pmStartupDelays += 1
+    for i in range(nPMs):#only nPMs will start at 0 time not nPms+1
+        pm = PM(0)
+        pmList.append(pm)
+
 
 def initEnvironment():
     global reqList, appList, activeContainers, appWaitingQueue, jobList, seq, cpu_pm, P_max, P_mid, P_idle, \
@@ -553,6 +608,7 @@ def initEnvironment():
         num1 += 1
         if num1 == req_num:
             break
+    startPMs()
     time_series_data = {
         'time_series': time_series,
         'energy_list': energy_list,
@@ -588,7 +644,7 @@ def sim():
         elif task == Task.SYS_LOG:
             systemLog(time)
         elif task == Task.CON_KILL:
-            containerKill(req, time)
+            containerKillAlgo(req, time)
 
         if len(jobList) == 0:
             endTime = time
@@ -597,10 +653,8 @@ def sim():
     logger.info("-----------------------------simulation end-----------------------------")
     return endTime
 
-
 if __name__ == "__main__":
     initEnvironment()
     endTime = sim()
     print(f"Total Energy Consumption:{getEnergy(endTime)}")
-    print(f"Number of PM start delays:{pmstart_delays}")
-    #print(containerMappedPM)
+    print(f"Number of PM startup delays:{pmStartupDelays}")
