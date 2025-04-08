@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from functools import cmp_to_key
 import pandas as pd
-
+req_num = 10000
 class Req:
     def __init__(self, app, func, end, dura):
         self.id = -1
@@ -56,7 +56,7 @@ def cmp_by_start_timestamp(a, b):
 
 def getReqList():
     reqList = []
-    df=pd.read_csv("Trace\\Modified_trace.csv",nrows=1500)
+    df=pd.read_csv("Trace\\Modified_trace.csv",nrows=req_num)
     for row in df.itertuples(index=False):
         reqList.append(Req(row.app,row.func,float(row.end_timestamp),float(row.duration)))
     reqList.sort(key=cmp_to_key(cmp_by_start_timestamp))

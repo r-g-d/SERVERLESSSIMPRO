@@ -16,8 +16,9 @@ from schedulingInterface.ContainerConsolidation import MinPmNum
 from schedulingInterface.PopQueue import FCFS, SJF, HRRN
 from enumClass.enumClass import ReqAllocAlgo, ConPlaceAlgo, ConConsAlgo, PopQueueAlgo, Task, ContainerState
 from optpack import containerMappedPM,nPMs
+from resource.req import req_num
 # ####################### Simulation Parameters(Adjustable) #######################
-req_num = 1500
+
 P_idle = 92.61
 P_max = 259.67
 P_mid = 94.8
