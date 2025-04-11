@@ -1,3 +1,4 @@
 Trace/*.txt
 Trace/*.csv
 logs/logMetrics
+resource/__pycache__
