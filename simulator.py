@@ -42,7 +42,7 @@ MAX_QUEUE_LENGTH = [PARAM2] * APP_NUM
 
 # ####################### Strategies(Adjustable) #######################
 
-ContainerPlacementStrategy = ConPlaceAlgo.BEST_FIT
+ContainerPlacementStrategy = ConPlaceAlgo.FIRST_FIT
 RequestAllocationStrategy = ReqAllocAlgo.EARLIEST_KILLED
 ContainerConsolidationStrategy = ConConsAlgo.MIN_PM_NUM
 PopQueueStrategy = PopQueueAlgo.FCFS
