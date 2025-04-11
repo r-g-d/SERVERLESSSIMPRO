@@ -88,7 +88,7 @@ kill_list = []
 activePm_list = []
 time_series_data = {}
 time_series = []
-
+pmstartdelay_list = []
 
 # ####################### Task Layer #######################
 def createContainerAlgo(req,createTime):
@@ -139,6 +139,7 @@ def createContainer(req, createTime):
     if noAvailablePM:
         global pmStartupDelays
         pmStartupDelays += 1
+        pmstartdelay_list.append(createTime)
         pm0 = PM(createTime)
         pm0.remainMem -= container.mem
         pm0.remainCpu -= container.cpu
@@ -563,13 +564,15 @@ def logInfo(endTime):
     else:
         with open('logs/plotFigs/' + str(LOG_STRATEGY) + '.json', mode='w') as file:
             json.dump(time_series_data, file)
-
+    with open('logs/plotFigs/startupdelayList.json',mode = 'w') as f:
+        json.dump(pmstartdelay_list,f)
 
 # #################################### real-time simulation ####################################
 def startPMs():
     #creating nPMs(6+1) at the time = 0
     global pmStartupDelays
     pmStartupDelays += 1
+    pmstartdelay_list.append(0)
     for i in range(nPMs):#only nPMs will start at 0 time not nPms+1
         pm = PM(0)
         pmList.append(pm)
