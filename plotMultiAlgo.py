@@ -152,8 +152,7 @@ def plotMigration(time_series, migration_list, color_list, algoNameList):
 
 if __name__ == "__main__":
     # select the Comparison algorithms
-    resolveNameList = [ConPlaceAlgo.BEST_FIT,
-                       ConPlaceAlgo.FIRST_FIT,ConPlaceAlgo.WORST_FIT]
+    resolveNameList = [ConPlaceAlgo.FIRST_FIT,ConPlaceAlgo.ONLINE_BIN_ALGO]
 
     time_series = []
     energy_list = []
@@ -192,7 +191,7 @@ if __name__ == "__main__":
     plt.rcParams.update({'font.size': 12})
     plt.rcParams['font.weight'] = 'bold'
 
-    plotConsumeEnergy(time_series, energy_list, color_list, algoNameList)
+    #plotConsumeEnergy(time_series, energy_list, color_list, algoNameList)
     #plotLatency(time_series, latency_list, color_list, algoNameList)
     #plotRej(time_series, rej_list, color_list, algoNameList)
     #plotColdStarts(time_series, cold_start_times_list, color_list, algoNameList)

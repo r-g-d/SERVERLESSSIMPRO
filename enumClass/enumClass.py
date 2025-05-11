@@ -12,6 +12,7 @@ class ConPlaceAlgo(Enum):
     MIN_VEC_DIST = 2001
     BEST_FIT = 2002
     WORST_FIT = 2003
+    ONLINE_BIN_ALGO = 2004
 
 
 class ConConsAlgo(Enum):

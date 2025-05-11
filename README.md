@@ -112,3 +112,6 @@ We provide plotting functionality. If you want to plot system metrics, please re
 
 Welcome to use this platform for your research work, and feel free to continue improving this simulation platform.
 If you have any questions, please contact 220222036@seu.edu.cn.
+
+### 
+For Azure Trace - https://github.com/Azure/AzurePublicDataset/raw/master/data/AzureFunctionsInvocationTraceForTwoWeeksJan2021.rar
